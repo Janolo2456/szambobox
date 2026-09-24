@@ -1,1 +1,35 @@
-<h1>siemaaaa w test2</h1>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/distscript>
+
+<script>
+emailjs.init({
+    publicKey: "N2ole6hlTDXVj9sgC"
+});
+
+function sendEmail(event) {
+    event.preventDefault();
+
+    emailjs.send(
+        "SzamboboxMail",
+        "template_dmhbyu8",
+        {
+            from_name: document.getElementById("name").value,
+            from_email: document.getElementById("email").value,
+            message: document.getElementById("message").value
+        }
+    )
+    .then(() => {
+        alert("Wysłano!");
+    })
+    .catch((error) => {
+        console.error(error);
+        alert("Błąd wysyłania");
+    });
+}
+</script>
+
+<form onsubmit="sendEmail(event)">
+    <input id="name" type="text" placeholder="Imię" required>
+    <input id="email" type="email" placeholder="Email" required>
+    <textarea id="message" placeholder="Wiadomość" required></textarea>
+    <button type="submit">Wyślij</button>
+</form>
